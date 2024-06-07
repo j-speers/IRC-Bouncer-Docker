@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  hopm_dnsbl:
+    build: .
+    image: jspeers615/hopm_dnsbl:latest
+    network_mode: "host"  
+    volumes:
+      - ./dnsbl/hopm.conf:/hopm/hopm.conf  
+      - ./logs/dnsbl:/hopm/var/log  
+  hopm_scanner:
+    build: .
+    image: jspeers615/hopm_scanner:latest
+    network_mode: "host"
+    volumes:
+      - ./scanner/hopm.conf:/hopm/hopm.conf
+      - ./logs/scanner:/hopm/var/log
